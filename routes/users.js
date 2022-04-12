@@ -1,29 +1,18 @@
 const express = require("express");
 const app = express();
 
-const db = require("../db/dbConnection");
-const { validationMiddleware } = require("../middlewares/usersMiddleware");
+const { addUser } = require("../controllers/userController");
 
 app.use(express.json());
 
 // Fetch a user record
-app.get("/", validationMiddleware);
+app.get("/", (req, res) => {});
 
-// Create a user record
-app.post("/", (req, res) => {
-  res.status(200).send({
-    status: "success",
-    message: "User post route",
-  });
-});
+// Creates a user record
+app.post("/", addUser);
 
 // Delete a user record
-app.delete("/", (req, res) => {
-  res.status(200).send({
-    status: "success",
-    message: "User delete route",
-  });
-});
+app.delete("/", (req, res) => {});
 
 app.all("*", async (req, res) => {
   res.status(404).send({

@@ -1,14 +1,13 @@
 const express = require("express");
+
+const db = require("../db/dbConnection");
+const { addEvent } = require("../controllers/eventController");
+
 const app = express();
 app.use(express.json());
 
-// Create an event record
-app.post("/", (req, res) => {
-  res.status(200).send({
-    status: "success",
-    message: "events post route",
-  });
-});
+// Creates an event record
+app.post("/", addEvent);
 
 app.all("*", async (req, res) => {
   res.status(404).send({
